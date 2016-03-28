@@ -25,14 +25,14 @@ can use any format supported by `graphviz` (png, pdf, svg, and many more).
 Usage: sqleton [options] <database>
 
 Options:
-  -L, --layout       The layout command
-           [choices: "neato", "dot", "circo", "fdp", "osage", "sfdp", "twopi"]
-                                                             [default: "sfdp"]
-  -e, --edge-labels  Label foreign key edges                         [boolean]
-  -t, --title        Optional title string
-  -f, --font         The font to use                    [default: "Helvetica"]
-  -d, --direction    Graph direction     [choices: "TB", "LR"] [default: "LR"]
-  -o, --out          Output file (determines output format)         [required]
+  -L, --layout      The layout command
+        [choices: "neato", "dot", "circo", "fdp", "osage", "sfdp", "twopi"]
+                                                          [default: "sfdp"]
+  -e, --edge-labels Label foreign key edges                       [boolean]
+  -t, --title       Optional title string
+  -f, --font        The font to use                  [default: "Helvetica"]
+  -d, --direction   Graph direction   [choices: "TB", "LR"] [default: "LR"]
+  -o, --out         Output file (determines output format)       [required]
 ```
 
 ## Node.js
