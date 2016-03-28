@@ -1,0 +1,29 @@
+{
+  "name": "sqleton",
+  "version": "1.0.0",
+  "description": "Visualizes your SQLite database",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inukshuk/sqleton.git"
+  },
+  "keywords": [
+    "sql",
+    "sqlite",
+    "visualize",
+    "graphviz",
+    "dot"
+  ],
+  "author": "Sylvester Keil <sylvester@keil.or.at>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/inukshuk/sqleton/issues"
+  },
+  "homepage": "https://github.com/inukshuk/sqleton#readme",
+  "engines": {
+    "node": ">=4"
+  }
+}
