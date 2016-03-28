@@ -87,12 +87,15 @@ function head(table) {
   ]]])
 }
 
-function type(t) {
-  return (t || ' ').toLowerCase()
+function type(column) {
+  return [
+    (column.type || ' ').toLowerCase()
+    // column.dflt_value ? ` [${column.dflt_value}]` : ''
+  ].join('')
 }
 
 function cols(column) {
-  return [[[`${column.name}${column.pk ? '* ' : ' '}${i(type(column.type))}`]]]
+  return [[[`${column.name}${column.pk ? '* ' : ' '}${i(type(column))}`]]]
 }
 
 function body(table) {
