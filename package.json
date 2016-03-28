@@ -5,7 +5,7 @@
   "main": "index.js",
   "bin": "./bin/sqleton.js",
   "scripts": {
-    "test": "eslint",
+    "test": "eslint . && ./bin/sqleton.js -o examples/z.png examples/z.sqlite",
     "prepublish": "npm test"
   },
   "repository": {

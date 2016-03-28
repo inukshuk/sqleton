@@ -125,7 +125,7 @@ function digraph(db, stream, options) {
     stream.write('  pad="0.4,0.4";\n')
     stream.write('  fontname="Helvetica";\n')
     stream.write('  fontsize="10";\n')
-    stream.write(`  label=<${b(options.title || db.name)}>;\n`)
+    stream.write(`  label=<${b(options.t || db.filename)}>;\n`)
 
     stream.write(`  node[${attr({
       shape: 'Mrecord',
@@ -155,7 +155,7 @@ function digraph(db, stream, options) {
 
         for (let table of ts) {
           for (let fk of table.fk) {
-            stream.write(`  ${edge(table, fk)}\n`)
+            stream.write(`  ${edge(table, fk, options)}\n`)
           }
         }
 
