@@ -15,23 +15,32 @@ const argv = require('yargs')
   .wrap(78)
 
   .option('L', {
-    alias: 'layout', describe: 'Layout command.', default: 'sfdp', choices: [
+    alias: 'layout', describe: 'The layout command', default: 'sfdp', choices: [
       'neato', 'dot', 'circo', 'fdp', 'osage', 'sfdp', 'twopi'
     ]
   })
 
   .options('e', {
     alias: 'edge-labels', type: 'boolean',
-    describe: 'Label foreign key edges.'
+    describe: 'Label foreign key edges'
   })
 
   .options('t', {
-    alias: 'title', describe: 'Optional title string.'
+    alias: 'title', describe: 'Optional title string'
+  })
+
+  .options('f', {
+    alias: 'font', default: 'Helvetica', describe: 'The font to use'
+  })
+
+  .options('d', {
+    alias: 'direction', choices: ['TB', 'LR'], default: 'LR',
+    describe: 'Graph direction'
   })
 
   .option('o', {
     alias: 'out', required: true, describe:
-      'Output file (determines output format).'
+      'Output file (determines output format)'
   })
 
   .argv

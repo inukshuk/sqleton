@@ -40,10 +40,10 @@ function quote(value) {
   return (value[0] === '<') ? `<${value}>` : `"${value}"`
 }
 
-function attr(attrs, sep) {
+function attr(attrs, sep, indent) {
   return Object
     .keys(attrs)
-    .map(prop => `${prop}=${quote(attrs[prop])}`)
+    .map(prop => `${indent || ''}${prop}=${quote(attrs[prop])}`)
     .join(sep || ', ')
 }
 
@@ -117,20 +117,21 @@ function node(table) {
 
 function digraph(db, stream, options) {
   return new Promise((resolve, reject) => {
-    stream.write(`digraph ${db.name} {\n`)
-    stream.write('  rankdir="LR";\n')
-    stream.write('  ranksep="1.5";\n')
-    stream.write('  nodesep="1.4";\n')
-    stream.write('  concentrate="true";\n')
-    stream.write('  pad="0.4,0.4";\n')
-    stream.write('  fontname="Helvetica";\n')
-    stream.write('  fontsize="10";\n')
-    stream.write(`  label=<${b(options.t || db.filename)}>;\n`)
+    stream.write(`digraph ${db.name} {\n${attr({
+      rankdir: options.direction || 'LR',
+      ranksep: '0.5',
+      nodesep: '0.4',
+      concentrate: 'true',
+      pad: '0.4,0.4',
+      fontname: options.font || 'Helvetica',
+      fontsize: 10,
+      label: b(options.title || db.filename)
+    }, ';\n', '  ')};\n`)
 
     stream.write(`  node[${attr({
       shape: 'Mrecord',
       fontsize: 10,
-      fontname: 'Helvetica',
+      fontname: options.font || 'Helvetica',
       margin: '0.07,0.04',
       penwidth: '1.0'
     })}];\n`)
@@ -140,7 +141,7 @@ function digraph(db, stream, options) {
       fontsize: 6,
       style: 'solid',
       penwidth: '0.9',
-      fontname: 'Helvetica',
+      fontname: options.font || 'Helvetica',
       labelangle: 33,
       labeldistance: '2.0'
     })}];\n`)
