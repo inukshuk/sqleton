@@ -17,7 +17,7 @@ You need to install [graphviz](http://www.graphviz.org/) separately:
     $ sqleton -o db.svg db.sqlite
 
 The format will be inferred from the name of the output file; you
-can use any format supported by `graphviz` (png, pdf, svg, ...).
+can use any format supported by `graphviz` (png, pdf, svg, and many more).
 
 ## Usage
 
