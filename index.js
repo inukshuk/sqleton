@@ -88,7 +88,7 @@ function head(table) {
 }
 
 function type(t) {
-  return (t || 'none').toLowerCase()
+  return (t || ' ').toLowerCase()
 }
 
 function cols(column) {
@@ -107,7 +107,7 @@ function edge(table, fk, options) {
   let labels = options['edge-lables'] ?
     { taillabel: fk.from, headlabel: fk.to } : {}
 
-  return `${table.name} -> ${fk.table} [${attr(labels)}];`
+  return `${table.name} -> ${fk.table}[${attr(labels)}];`
 }
 
 function node(table) {
@@ -146,7 +146,7 @@ function digraph(db, stream, options) {
       labeldistance: '2.0'
     })}];\n`)
 
-    stream.write('  graph [overlap=false];\n')
+    stream.write('  graph[overlap=false];\n')
 
     return tables(db)
       .then(ts => {
