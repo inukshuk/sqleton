@@ -1,10 +1,12 @@
 {
   "name": "sqleton",
   "version": "1.0.0",
-  "description": "Visualizes your SQLite database",
+  "description": "Visualizes your SQL database schema",
   "main": "index.js",
+  "bin": "./bin/sqleton.js",
   "scripts": {
-    "test": "npm test"
+    "test": "eslint",
+    "prepublish": "npm test"
   },
   "repository": {
     "type": "git",
