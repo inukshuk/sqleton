@@ -25,5 +25,9 @@
   "homepage": "https://github.com/inukshuk/sqleton#readme",
   "engines": {
     "node": ">=4"
+  },
+  "dependencies": {
+    "sqlite3": "^3.1.2",
+    "yargs": "^4.3.2"
   }
 }
