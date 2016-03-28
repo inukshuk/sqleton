@@ -1,0 +1,56 @@
+# vi: set ft=yaml
+
+root: true
+
+extends:
+  'eslint:recommended'
+
+parserOptions:
+  ecmaVersion: 6
+  sourceType: script
+  ecmaFeatures:
+    modules: false
+
+env:
+  es6: true
+  node: true
+
+rules:
+  array-bracket-spacing: 2
+  block-spacing: 2
+  brace-style: [2, '1tbs', { allowSingleLine: true }]
+  comma-style: 2
+  comma-spacing: 2
+  curly: [2, 'multi-line']
+  dot-location: [2, 'property']
+  eqeqeq: [2, 'smart']
+  indent: [2, 2, { SwitchCase: 1 }]
+  key-spacing: [1, { beforeColon: false, afterColon: true }]
+  keyword-spacing: 2
+  max-len: [1, 80, 2, { ignoreComments: true, ignoreUrls: true }]
+  max-nested-callbacks: [1, 4]
+  new-parens: 2
+  no-caller: 2
+  no-eval: 2
+  no-implied-eval: 2
+  no-loop-func: 2
+  no-mixed-spaces-and-tabs: 2
+  no-multi-str: 2
+  no-shadow: 2
+  no-spaced-func: 2
+  no-trailing-spaces: 2
+  no-unexpected-multiline: 2
+  no-unneeded-ternary: 2
+  no-useless-concat: 2
+  no-unreachable: 2
+  object-curly-spacing: [2, 'always']
+  operator-linebreak: [2, 'after']
+  quote-props: [2, 'consistent-as-needed']
+  quotes: [2, 'single', 'avoid-escape']
+  semi-spacing: 0
+  semi: [2, 'never']
+  space-before-blocks: 2
+  space-before-function-paren: [2, { anonymous: 'always', named: 'never' }]
+  space-infix-ops: 2
+  space-unary-ops: 2
+  strict: [2, 'global']
