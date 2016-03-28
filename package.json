@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Visualizes your SQL database schema",
   "main": "index.js",
-  "bin": "./bin/sqleton.js",
+  "bin": "./bin/sqleton",
   "scripts": {
-    "test": "eslint . && ./bin/sqleton.js -o examples/z.png examples/z.sqlite",
+    "test": "eslint . && ./bin/sqleton -o examples/z.png examples/z.sqlite",
     "prepublish": "npm test"
   },
   "repository": {
