@@ -26,13 +26,13 @@ Usage: sqleton [options] <database>
 
 Options:
   -L, --layout      The layout command
-        [choices: "neato", "dot", "circo", "fdp", "osage", "sfdp", "twopi"]
-                                                           [default: "fdp"]
-  -e, --edge-labels Label foreign key edges                       [boolean]
+      [choices: "neato", "dot", "circo", "fdp", "osage", "sfdp", "twopi"]
+                                                         [default: "fdp"]
+  -e, --edge-labels Label foreign key edges                     [boolean]
   -t, --title       Optional title string
-  -f, --font        The font to use                  [default: "Helvetica"]
-  -d, --direction   Graph direction   [choices: "TB", "LR"] [default: "LR"]
-  -o, --out         Output file (determines output format)       [required]
+  -f, --font        The font to use                [default: "Helvetica"]
+  -d, --direction   Graph direction [choices: "TB", "LR"] [default: "LR"]
+  -o, --out         Output file (determines output format)     [required]
 ```
 
 ## Fine Tuning
