@@ -27,13 +27,18 @@ Usage: sqleton [options] <database>
 Options:
   -L, --layout      The layout command
         [choices: "neato", "dot", "circo", "fdp", "osage", "sfdp", "twopi"]
-                                                          [default: "sfdp"]
+                                                           [default: "fdp"]
   -e, --edge-labels Label foreign key edges                       [boolean]
   -t, --title       Optional title string
   -f, --font        The font to use                  [default: "Helvetica"]
   -d, --direction   Graph direction   [choices: "TB", "LR"] [default: "LR"]
   -o, --out         Output file (determines output format)       [required]
 ```
+
+## Fine Tuning
+
+The fine tune your graph, the best option is to use `.dot` as your output
+format and adjust the parameters in the file.
 
 ## Node.js
 
