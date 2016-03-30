@@ -83,7 +83,7 @@ function tb(trs, options) {
 
 function head(table) {
   return tb([[[
-    [b(table.name, { 'point-size': 11 }), { height: 24, valign: 'bottom' }]
+    [b(table.name, { 'point-size': 13 }), { height: 24, valign: 'bottom' }]
   ]]])
 }
 
@@ -122,18 +122,21 @@ function digraph(db, stream, options) {
   return new Promise((resolve, reject) => {
     stream.write(`digraph ${db.name} {\n${attr({
       rankdir: options.direction || 'LR',
-      ranksep: '0.5',
-      nodesep: '0.4',
+      ranksep: '0.8',
+      nodesep: '0.6',
+      overlap: 'false',
+      sep: '+16.0',
+      splines: 'compound',
       concentrate: 'true',
       pad: '0.4,0.4',
       fontname: options.font || 'Helvetica',
-      fontsize: 10,
+      fontsize: 12,
       label: b(options.title || db.filename)
     }, ';\n', '  ')};\n`)
 
     stream.write(`  node[${attr({
       shape: 'Mrecord',
-      fontsize: 10,
+      fontsize: 12,
       fontname: options.font || 'Helvetica',
       margin: '0.07,0.04',
       penwidth: '1.0'
@@ -141,7 +144,7 @@ function digraph(db, stream, options) {
 
     stream.write(`  edge[${attr({
       arrowsize: '0.8',
-      fontsize: 6,
+      fontsize: 10,
       style: 'solid',
       penwidth: '0.9',
       fontname: options.font || 'Helvetica',
@@ -149,7 +152,6 @@ function digraph(db, stream, options) {
       labeldistance: '2.0'
     })}];\n`)
 
-    stream.write('  graph[overlap=false];\n')
 
     return tables(db)
       .then(ts => {

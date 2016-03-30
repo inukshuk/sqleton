@@ -15,7 +15,7 @@ const argv = require('yargs')
   .wrap(78)
 
   .option('L', {
-    alias: 'layout', describe: 'The layout command', default: 'sfdp', choices: [
+    alias: 'layout', describe: 'The layout command', default: 'fdp', choices: [
       'neato', 'dot', 'circo', 'fdp', 'osage', 'sfdp', 'twopi'
     ]
   })
