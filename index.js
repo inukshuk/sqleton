@@ -61,9 +61,9 @@ function b(content, options) {
   return font(tag('b', content), assign({}, options))
 }
 
-function i(content, options) {
-  return font(tag('i', content), assign({ color: 'grey60' }, options))
-}
+//function i(content, options) {
+//  return font(tag('i', content), assign({ color: 'grey60' }, options))
+//}
 
 function td(content, options) {
   return tag('td', content, assign({
@@ -95,7 +95,7 @@ function type(column) {
 }
 
 function cols(column) {
-  return [[[`${column.name}${column.pk ? '* ' : ' '}${i(type(column))}`]]]
+  return [[[`${column.name}${column.pk ? '* ' : ' '}${b(type(column))}`]]]
 }
 
 function body(table) {
