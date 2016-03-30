@@ -16,7 +16,9 @@
     "sql",
     "sqlite",
     "visualize",
+    "visualizer",
     "graphviz",
+    "diagram",
     "dot"
   ],
   "author": "Sylvester Keil <sylvester@keil.or.at>",
