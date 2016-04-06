@@ -72,11 +72,11 @@ function td(content, options) {
 }
 
 function tr(tds) {
-  return tag('tr', tds.map(args => td(...args)).join(''))
+  return tag('tr', tds.map(args => td(args[0], args[1])).join(''))
 }
 
 function tb(trs, options) {
-  return tag('table', trs.map(args => tr(...args)).join(''), assign({
+  return tag('table', trs.map(args => tr(args[0])).join(''), assign({
     border: 0, cellspacing: 0.5
   }, options))
 }
