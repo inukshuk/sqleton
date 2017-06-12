@@ -5,16 +5,19 @@ Visualizes your SQLite database schema.
 ![](https://raw.githubusercontent.com/inukshuk/sqleton/master/examples/screenshot.png)
 
 ## Installation
-
-    $ npm install -g sqleton
+```bash
+$ npm install -g sqleton
+```
 
 You need to install [graphviz](http://www.graphviz.org/) separately:
-
-    $ [pacman -Sy | apt-get install | brew install] graphviz
+```bash
+$ [pacman -Sy | apt-get install | brew install] graphviz
+```
 
 ## Example
-
-    $ sqleton -o db.svg db.sqlite
+```bash
+$ sqleton -o db.svg db.sqlite
+```
 
 The format will be inferred from the name of the output file; you
 can use any format supported by `graphviz` (png, pdf, svg, and many more).
@@ -41,15 +44,16 @@ The fine tune your graph, the best option is to use `.dot` as your output
 format and adjust the parameters in the file.
 
 ## Node.js
+```js
+const sqleton = require('sqleton')
 
-    const sqleton = require('sqleton')
+// Open your database and writable stream
+// ....
 
-    // Open your database and writable stream
-    // ....
-
-    sqleton(db, stream, options)
-      .then(() => { db.close() })
-      .then(() => { stream.end() })
+sqleton(db, stream, options)
+  .then(() => { db.close() })
+  .then(() => { stream.end() })
+```
 
 ## What about PostgreSQL or other databases?
 
