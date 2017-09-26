@@ -31,10 +31,11 @@
     "node": ">=4"
   },
   "dependencies": {
-    "sqlite3": "^3.1.2",
-    "yargs": "^8.0.0"
+    "sqlite": "^2.8.0",
+    "sqlite3": "^3.1.12",
+    "yargs": "^9.0.1"
   },
   "devDependencies": {
-    "eslint": "^3.3.1"
+    "eslint": "^4.7.2"
   }
 }
