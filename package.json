@@ -6,7 +6,7 @@
   "bin": "./bin/sqleton",
   "scripts": {
     "test": "eslint . && ./bin/sqleton -o examples/z.png examples/z.sqlite",
-    "prepublish": "npm test"
+    "prepublishOnly": "npm test"
   },
   "repository": {
     "type": "git",
