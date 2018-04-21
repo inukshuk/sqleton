@@ -107,8 +107,8 @@ function label(table) {
 }
 
 function edge(table, fk, options) {
-  let labels = options['edge-lables'] ?
-    { taillabel: fk.from, headlabel: fk.to } : {}
+  let labels = options.edgeLabels ?
+    { taillabel: fk.from || '', headlabel: fk.to || '' } : {}
 
   return `${table.name} -> ${fk.table}[${attr(labels)}];`
 }
