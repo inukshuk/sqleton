@@ -30,7 +30,9 @@ function columns(db, ts) {
 }
 
 function tables(db) {
-  return all(db, 'SELECT name FROM sqlite_master WHERE type = "table"')
+  return all(db,
+    'SELECT name FROM sqlite_master ' +
+    'WHERE type = "table" AND name NOT IN ("sqlite_sequence")')
     .then(ts => columns(db, ts))
     .then(ts => keys(db, ts))
 }
