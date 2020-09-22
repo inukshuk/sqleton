@@ -32,9 +32,9 @@
   },
   "dependencies": {
     "sqlite3": "^5.0.0",
-    "yargs": "^15.4.1"
+    "yargs": "^16.0.3"
   },
   "devDependencies": {
-    "eslint": "^7.8.1"
+    "eslint": "^7.9.0"
   }
 }
