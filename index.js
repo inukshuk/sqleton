@@ -157,19 +157,20 @@ function digraph(db, stream, options) {
 
     return tables(db)
       .then(ts => {
-        for (let table of ts) {
-          stream.write(`  ${node(table)}\n`)
-        }
+        const nodes = []
+        const edges = []
 
         for (let table of ts) {
+          nodes.push(`  ${node(table)}\n`)
           for (let fk of table.fk) {
-            stream.write(`  ${edge(table, fk, options)}\n`)
+            edges.push(`  ${edge(table, fk, options)}\n`)
           }
         }
+  
+        stream.write(nodes.join('').concat(edges.join(''),'}\n'))
 
         return ts
       })
-      .then(() => { stream.write('}\n') })
       .then(resolve, reject)
   })
 }
