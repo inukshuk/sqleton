@@ -166,8 +166,8 @@ function digraph(db, stream, options) {
             edges.push(`  ${edge(table, fk, options)}\n`)
           }
         }
-  
-        stream.write(nodes.join('').concat(edges.join(''),'}\n'))
+
+        stream.write(nodes.join('').concat(edges.join(''), '}\n'))
 
         return ts
       })
