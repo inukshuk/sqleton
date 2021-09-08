@@ -38,9 +38,9 @@ Options:
   -o, --out         Output file (determines output format)     [required]
 ```
 
-## Fine Tuning
+## Fine-Tuning
 
-The fine tune your graph, the best option is to use `.dot` as your output
+To fine-tune your graph, the best option is to use `.dot` as your output
 format and adjust the parameters in the file.
 
 ## Node.js
