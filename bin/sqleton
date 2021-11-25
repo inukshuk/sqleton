@@ -3,7 +3,7 @@
 'use strict'
 
 const spawn = require('child_process').spawn
-const sqlite = require('sqlite3')
+const sqlite = require('@vscode/sqlite3')
 const extname = require('path').extname
 const open = require('fs').createWriteStream
 const sqleton = require('..')
