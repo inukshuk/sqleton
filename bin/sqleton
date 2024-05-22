@@ -43,6 +43,11 @@ const argv = require('yargs')
       'Output file (determines output format)'
   })
 
+  .option('skip-index', {
+    type: 'boolean',
+    describe: 'Skip writing table indexes'
+  })
+
   .argv
 
 
