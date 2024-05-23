@@ -38,7 +38,7 @@ function indexes(db, ts, opts) {
 
   return Promise.all(ts.map((table) =>
     all(db, `PRAGMA index_list('${table.name}')`)
-      .then(idxs => { table.indexes = idxs })
+      .then(idx => { table.indexes = idx })
       .then(() => table))
   )
 }
@@ -116,9 +116,10 @@ function cols(column) {
 }
 
 function idxs(index) {
-  const indexModifiers = [index.unique ? 'uniq' : null, index.partial ? 'partial' : null]
-    .filter(Boolean)
-    .join(', ')
+  const indexModifiers = [
+    index.unique ? 'uniq' : null,
+    index.partial ? 'partial' : null
+  ].filter(Boolean).join(', ')
 
   return [[[`${index.name} ${indexModifiers ? `(${b(indexModifiers)})` : ''}`]]]
 }
