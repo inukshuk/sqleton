@@ -29,12 +29,27 @@ function columns(db, ts) {
       .then(() => table)))
 }
 
-function tables(db) {
+function indexes(db, ts, opts) {
+  if (opts.skipIndex) {
+    ts.map(table => (table.indexes = []))
+
+    return Promise.resolve(ts)
+  }
+
+  return Promise.all(ts.map((table) =>
+    all(db, `PRAGMA index_list('${table.name}')`)
+      .then(idxs => { table.indexes = idxs })
+      .then(() => table))
+  )
+}
+
+function tables(db, opts) {
   return all(db,
     'SELECT name FROM sqlite_master ' +
     'WHERE type = "table" AND name NOT IN ("sqlite_sequence")')
     .then(ts => columns(db, ts))
     .then(ts => keys(db, ts))
+    .then((ts) => indexes(db, ts, opts))
 }
 
 
@@ -100,8 +115,18 @@ function cols(column) {
   return [[[`${column.name}${column.pk ? '* ' : ' '}${b(type(column))}`]]]
 }
 
+function idxs(index) {
+  const indexModifiers = [index.unique ? 'uniq' : null, index.partial ? 'partial' : null]
+    .filter(Boolean)
+    .join(', ')
+
+  return [[[`${index.name} ${indexModifiers ? `(${b(indexModifiers)})` : ''}`]]]
+}
+
 function body(table) {
-  return tb(table.columns.map(cols), { width: 134 })
+  const data = [...table.columns.map(cols), ...table.indexes.map(idxs)]
+
+  return tb(data, { width: 134 })
 }
 
 function label(table) {
@@ -155,7 +180,7 @@ function digraph(db, stream, options) {
     })}];\n`)
 
 
-    return tables(db)
+    return tables(db, options)
       .then(ts => {
         const nodes = []
         const edges = []
