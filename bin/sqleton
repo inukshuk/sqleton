@@ -2,11 +2,11 @@
 
 'use strict'
 
-const spawn = require('child_process').spawn
+const spawn = require('node:child_process').spawn
 const sqlite = require('sqlite3')
-const extname = require('path').extname
-const open = require('fs').createWriteStream
-const sqleton = require('..')
+const extname = require('node:path').extname
+const open = require('node:fs').createWriteStream
+const sqleton = require('../index.js')
 
 
 const argv = require('yargs')
