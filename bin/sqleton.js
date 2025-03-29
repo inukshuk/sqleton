@@ -2,6 +2,7 @@
 
 'use strict'
 
+const process = require('node:process')
 const spawn = require('node:child_process').spawn
 const sqlite = require('sqlite3')
 const extname = require('node:path').extname
