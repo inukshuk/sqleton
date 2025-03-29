@@ -8,7 +8,7 @@
     "lint": "eslint --fix *.js bin",
     "prepublishOnly": "npm test",
     "pretest": "eslint *.js bin",
-    "test": "./bin/sqleton -o examples/z.png examples/z.sqlite"
+    "test": "./bin/sqleton.js -o examples/z.png examples/z.sqlite"
   },
   "repository": {
     "type": "git",
@@ -33,8 +33,7 @@
     "node": ">=4"
   },
   "dependencies": {
-    "sqlite3": "^5.1.4",
-    "yargs": "^17.2.1"
+    "sqlite3": "^5.1.4"
   },
   "devDependencies": {
     "neostandard": "^0.12.1"

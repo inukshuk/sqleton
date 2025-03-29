@@ -25,18 +25,24 @@ can use any format supported by `graphviz` (png, pdf, svg, and many more).
 ## Usage
 
 ```
-Usage: sqleton [options] <database>
+Usage: sqleton [options] <db-file>
 
 Options:
-  -L, --layout      The layout command
-       [choices: "neato", "dot", "circo", "fdp", "osage", "sfdp", "twopi"]
-                                                          [default: "fdp"]
-  -e, --edge-labels  Label foreign key edges                     [boolean]
+  -h, --help        Print this help text and exit
+  -v, --version     Print program version and exit
+  -L, --layout      The layout command, one of:
+                      "neato", "dot", "circo",
+                      "fdp" (default),
+                      "osage", "sfdp", "twopi"
+                              
+  -e, --edge-labels  Label foreign key edges
   -t, --title        Optional title string
-  -f, --font         The font to use                [default: "Helvetica"]
-  -d, --direction    Graph direction [choices: "TB", "LR"] [default: "LR"]
-  -o, --out          Output file (determines output format)     [required]
-      --skip-index   Skip writing table indexes                  [boolean]
+  -f, --font         The font to use, by default "Helvetica"
+  -d, --direction    Graph direction, "TB" or "LR" (default)
+  -o, --out          Output file (determines output format)
+                     if not given DOT will be printed to stdout
+
+      --skip-index   Skip writing table indexes
 ```
 
 ## Fine-Tuning
@@ -61,7 +67,3 @@ sqleton(db, stream, options)
 `sqleton` was written to visualize SQLite schemata. Having said that,
 you can try to dump your schema and create a new SQLite database for
 visualisation from it.
-
-## License
-
-GPL-3.0
