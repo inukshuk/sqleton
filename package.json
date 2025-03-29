@@ -3,11 +3,11 @@
   "version": "2.2.1",
   "description": "Visualizes your SQL database schema",
   "main": "index.js",
-  "bin": "./bin/sqleton",
+  "bin": "./bin/sqleton.js",
   "scripts": {
-    "lint": "eslint --fix",
+    "lint": "eslint --fix *.js bin",
     "prepublishOnly": "npm test",
-    "pretest": "eslint",
+    "pretest": "eslint *.js bin",
     "test": "./bin/sqleton -o examples/z.png examples/z.sqlite"
   },
   "repository": {
