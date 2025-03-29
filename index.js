@@ -146,7 +146,7 @@ function node (table) {
 
 function digraph (db, stream, options) {
   return new Promise((resolve, reject) => {
-    stream.write(`digraph ${db.name} {\n${attr({
+    stream.write(`digraph ${options.name} {\n${attr({
       rankdir: options.direction || 'LR',
       ranksep: '0.8',
       nodesep: '0.6',
@@ -155,15 +155,15 @@ function digraph (db, stream, options) {
       splines: 'compound',
       concentrate: 'true',
       pad: '0.4,0.4',
-      fontname: options.font || 'Helvetica',
+      fontname: options.font,
       fontsize: 12,
-      label: b(options.title || db.filename)
+      label: b(options.title)
     }, ';\n', '  ')};\n`)
 
     stream.write(`  node[${attr({
       shape: 'Mrecord',
       fontsize: 12,
-      fontname: options.font || 'Helvetica',
+      fontname: options.font,
       margin: '0.07,0.04',
       penwidth: '1.0'
     })}];\n`)
@@ -173,7 +173,7 @@ function digraph (db, stream, options) {
       fontsize: 10,
       style: 'solid',
       penwidth: '0.9',
-      fontname: options.font || 'Helvetica',
+      fontname: options.font,
       labelangle: 33,
       labeldistance: '2.0'
     })}];\n`)
