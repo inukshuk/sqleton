@@ -2,11 +2,9 @@
 
 const assign = Object.assign
 
-
 module.exports = sqleton
 
-
-function all(db, query, params) {
+function all (db, query, params) {
   return new Promise((resolve, reject) => {
     db.all(query, params, (err, rows) => {
       if (err) return reject(err)
@@ -15,21 +13,21 @@ function all(db, query, params) {
   })
 }
 
-function keys(db, ts) {
+function keys (db, ts) {
   return Promise.all(ts.map(table =>
     all(db, `PRAGMA foreign_key_list('${table.name}')`)
       .then(fk => { table.fk = fk })
       .then(() => table)))
 }
 
-function columns(db, ts) {
+function columns (db, ts) {
   return Promise.all(ts.map(table =>
     all(db, `PRAGMA table_info('${table.name}')`)
       .then(cs => { table.columns = cs })
       .then(() => table)))
 }
 
-function indexes(db, ts, opts) {
+function indexes (db, ts, opts) {
   if (opts.skipIndex) {
     ts.map(table => (table.indexes = []))
 
@@ -43,7 +41,7 @@ function indexes(db, ts, opts) {
   )
 }
 
-function tables(db, opts) {
+function tables (db, opts) {
   return all(db,
     'SELECT name FROM sqlite_master ' +
     "WHERE type = 'table' AND name NOT IN ('sqlite_sequence')")
@@ -52,70 +50,69 @@ function tables(db, opts) {
     .then((ts) => indexes(db, ts, opts))
 }
 
-
-function quote(value) {
+function quote (value) {
   return (value[0] === '<') ? `<${value}>` : `"${value}"`
 }
 
-function attr(attrs, sep, indent) {
+function attr (attrs, sep, indent) {
   return Object
     .keys(attrs)
     .map(prop => `${indent || ''}${prop}=${quote(attrs[prop])}`)
     .join(sep || ', ')
 }
 
-function tag(name, content, options) {
-  return (options) ?
-    `<${name} ${attr(options, ' ')}>${content}</${name}>` :
-    `<${name}>${content}</${name}>`
+function tag (name, content, options) {
+  return (options)
+    ? `<${name} ${attr(options, ' ')}>${content}</${name}>`
+    : `<${name}>${content}</${name}>`
 }
 
-function font(content, options) {
+function font (content, options) {
   return tag('font', content, options)
 }
 
-function b(content, options) {
+function b (content, options) {
   return font(tag('b', content), assign({}, options))
 }
 
-//function i(content, options) {
+// function i(content, options) {
 //  return font(tag('i', content), assign({ color: 'grey60' }, options))
-//}
+// }
 
-function td(content, options) {
+function td (content, options) {
   return tag('td', content, assign({
     align: 'left'
   }, options))
 }
 
-function tr(tds) {
+function tr (tds) {
   return tag('tr', tds.map(args => td(args[0], args[1])).join(''))
 }
 
-function tb(trs, options) {
+function tb (trs, options) {
   return tag('table', trs.map(args => tr(args[0])).join(''), assign({
     border: 0, cellspacing: 0.5
   }, options))
 }
 
-function head(table) {
+function head (table) {
   return tb([[[
     [b(table.name, { 'point-size': 13 }), { height: 24, valign: 'bottom' }]
   ]]])
 }
 
-function type(column) {
+function type (column) {
   return [
     (column.type || ' ').toLowerCase()
     // column.dflt_value ? ` [${column.dflt_value}]` : ''
   ].join('')
 }
 
-function cols(column) {
+function cols (column) {
   return [[[`${column.name}${column.pk ? '* ' : ' '}${b(type(column))}`]]]
 }
 
-function idxs(index) {
+function idxs (index) {
   const indexModifiers = [
     index.unique ? 'uniq' : null,
     index.partial ? 'partial' : null
@@ -124,29 +121,30 @@ function idxs(index) {
   return [[[`${index.name} ${indexModifiers ? `(${b(indexModifiers)})` : ''}`]]]
 }
 
-function body(table) {
+function body (table) {
   const data = [...table.columns.map(cols), ...table.indexes.map(idxs)]
 
   return tb(data, { width: 134 })
 }
 
-function label(table) {
+function label (table) {
   return `${head(table)}|${body(table)}`
 }
 
-function edge(table, fk, options) {
-  let labels = options.edgeLabels ?
-    { taillabel: fk.from || '', headlabel: fk.to || '' } : {}
+function edge (table, fk, options) {
+  const labels = options.edgeLabels
+    ? { taillabel: fk.from || '', headlabel: fk.to || '' }
+    : {}
 
   return `${table.name} -> ${fk.table}[${attr(labels)}];`
 }
 
-function node(table) {
-  let options = { label: label(table) }
+function node (table) {
+  const options = { label: label(table) }
   return `${table.name} [${attr(options)}];`
 }
 
-function digraph(db, stream, options) {
+function digraph (db, stream, options) {
   return new Promise((resolve, reject) => {
     stream.write(`digraph ${db.name} {\n${attr({
       rankdir: options.direction || 'LR',
@@ -180,15 +178,14 @@ function digraph(db, stream, options) {
       labeldistance: '2.0'
     })}];\n`)
 
-
     return tables(db, options)
       .then(ts => {
         const nodes = []
         const edges = []
 
-        for (let table of ts) {
+        for (const table of ts) {
           nodes.push(`  ${node(table)}\n`)
-          for (let fk of table.fk) {
+          for (const fk of table.fk) {
             edges.push(`  ${edge(table, fk, options)}\n`)
           }
         }
@@ -201,8 +198,8 @@ function digraph(db, stream, options) {
   })
 }
 
-function sqleton(db, stream, options, cb) {
-  const promise =  new Promise((resolve, reject) => {
+function sqleton (db, stream, options, cb) {
+  const promise = new Promise((resolve, reject) => {
     digraph(db, stream, options).then(resolve, reject)
   })
 

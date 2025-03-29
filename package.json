@@ -5,8 +5,10 @@
   "main": "index.js",
   "bin": "./bin/sqleton",
   "scripts": {
-    "test": "eslint . && ./bin/sqleton -o examples/z.png examples/z.sqlite",
-    "prepublishOnly": "npm test"
+    "lint": "eslint --fix",
+    "prepublishOnly": "npm test",
+    "pretest": "eslint",
+    "test": "./bin/sqleton -o examples/z.png examples/z.sqlite"
   },
   "repository": {
     "type": "git",
