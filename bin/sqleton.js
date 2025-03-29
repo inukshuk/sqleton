@@ -9,20 +9,23 @@ const extname = require('node:path').extname
 const open = require('node:fs').createWriteStream
 const sqleton = require('../index.js')
 
-
 const argv = require('yargs')
   .usage('Usage: $0 [options] <database>')
   .demand(1)
   .wrap(78)
 
   .option('L', {
-    alias: 'layout', describe: 'The layout command', default: 'fdp', choices: [
+    alias: 'layout',
+    describe: 'The layout command',
+    default: 'fdp',
+    choices: [
       'neato', 'dot', 'circo', 'fdp', 'osage', 'sfdp', 'twopi'
     ]
   })
 
   .options('e', {
-    alias: 'edge-labels', type: 'boolean',
+    alias: 'edge-labels',
+    type: 'boolean',
     describe: 'Label foreign key edges'
   })
 
@@ -35,12 +38,16 @@ const argv = require('yargs')
   })
 
   .options('d', {
-    alias: 'direction', choices: ['TB', 'LR'], default: 'LR',
+    alias: 'direction',
+    choices: ['TB', 'LR'],
+    default: 'LR',
     describe: 'Graph direction'
   })
 
   .option('o', {
-    alias: 'out', required: true, describe:
+    alias: 'out',
+    required: true,
+    describe:
       'Output file (determines output format)'
   })
 
@@ -51,9 +58,7 @@ const argv = require('yargs')
 
   .argv
 
-
-
-function fail(error) {
+function fail (error) {
   if (error) {
     process.stderr.write(`${error.stack}\n`)
   }
@@ -63,7 +68,7 @@ function fail(error) {
 const db = new sqlite.Database(argv._[0], sqlite.OPEN_READONLY, error => {
   if (error) return fail(error)
 
-  let format = extname(argv.out).slice(1)
+  const format = extname(argv.out).slice(1)
   let stream, proc
 
   if (format !== 'dot') {
@@ -71,7 +76,6 @@ const db = new sqlite.Database(argv._[0], sqlite.OPEN_READONLY, error => {
     proc.stderr.pipe(process.stderr)
 
     stream = proc.stdin
-
   } else {
     stream = open(argv.out, { autoClose: true })
   }
