@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/inukshuk/sqleton#readme",
   "engines": {
-    "node": ">=4"
+    "node": ">=18"
   },
   "dependencies": {
     "sqlite3": "^5.1.4"
