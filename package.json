@@ -33,7 +33,7 @@
     "node": ">=18"
   },
   "dependencies": {
-    "better-sqlite3": "^11.0.0"
+    "better-sqlite3": "^12.6.2"
   },
   "devDependencies": {
     "neostandard": "^0.12.1"
