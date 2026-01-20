@@ -5,7 +5,7 @@
 const process = require('node:process')
 const spawn = require('node:child_process').spawn
 const { parseArgs } = require('node:util')
-const sqlite = require('sqlite3')
+const Database = require('better-sqlite3')
 const { extname, basename } = require('node:path')
 const open = require('node:fs').createWriteStream
 const sqleton = require('../index.js')
@@ -134,26 +134,26 @@ function parse () {
 
 const opts = parse()
 
-const db = new sqlite.Database(
-  opts.path,
-  sqlite.OPEN_READONLY,
-  error => {
-    if (error) return fail(error)
+let db
+try {
+  db = new Database(opts.path, { readonly: true })
+} catch (error) {
+  fail(error)
+}
 
-    let stream
+let stream
 
-    if (opts.format !== 'dot') {
-      const proc = spawn(opts.layout, [`-T${opts.format}`, `-o${opts.out}`])
-      proc.stderr.pipe(process.stderr)
-      stream = proc.stdin
-    } else {
-      stream = opts.out
-        ? open(opts.out, { autoClose: true })
-        : process.stdout
-    }
+if (opts.format !== 'dot') {
+  const proc = spawn(opts.layout, [`-T${opts.format}`, `-o${opts.out}`])
+  proc.stderr.pipe(process.stderr)
+  stream = proc.stdin
+} else {
+  stream = opts.out
+    ? open(opts.out, { autoClose: true })
+    : process.stdout
+}
 
-    sqleton(db, stream, opts)
-      .then(() => { db.close() })
-      .then(() => { stream.end() })
-      .catch(fail)
-  })
+sqleton(db, stream, opts)
+  .then(() => { db.close() })
+  .then(() => { stream.end() })
+  .catch(fail)
