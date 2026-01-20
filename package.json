@@ -1,6 +1,6 @@
 {
   "name": "sqleton",
-  "version": "2.3.0",
+  "version": "3.0.0",
   "description": "Visualizes your SQL database schema",
   "main": "index.js",
   "bin": "./bin/sqleton.js",
