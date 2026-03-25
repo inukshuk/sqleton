@@ -36,6 +36,6 @@
     "better-sqlite3": "^12.6.2"
   },
   "devDependencies": {
-    "neostandard": "^0.12.1"
+    "neostandard": "^0.13.0"
   }
 }
