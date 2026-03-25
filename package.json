@@ -3,7 +3,9 @@
   "version": "4.0.0",
   "description": "Visualizes your SQL database schema",
   "main": "index.js",
-  "bin": "./bin/sqleton.js",
+  "bin": {
+    "sqleton": "bin/sqleton.js"
+  },
   "scripts": {
     "lint": "eslint --fix *.js bin",
     "prepublishOnly": "npm test",
