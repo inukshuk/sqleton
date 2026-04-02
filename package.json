@@ -6,6 +6,10 @@
   "bin": {
     "sqleton": "bin/sqleton.js"
   },
+  "files": [
+    "bin",
+    "index.js"
+  ],
   "scripts": {
     "lint": "eslint --fix *.js bin",
     "prepublishOnly": "npm test",
@@ -32,10 +36,7 @@
   },
   "homepage": "https://github.com/inukshuk/sqleton#readme",
   "engines": {
-    "node": ">=18"
-  },
-  "dependencies": {
-    "better-sqlite3": "^12.6.2"
+    "node": ">=25"
   },
   "devDependencies": {
     "neostandard": "^0.13.0"

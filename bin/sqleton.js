@@ -5,7 +5,7 @@
 const process = require('node:process')
 const spawn = require('node:child_process').spawn
 const { parseArgs } = require('node:util')
-const Database = require('better-sqlite3')
+const { DatabaseSync } = require('node:sqlite')
 const { extname, basename } = require('node:path')
 const open = require('node:fs').createWriteStream
 const sqleton = require('../index.js')
@@ -136,7 +136,7 @@ const opts = parse()
 
 let db
 try {
-  db = new Database(opts.path, { readonly: true })
+  db = new DatabaseSync(opts.path, { readOnly: true })
 } catch (error) {
   fail(error)
 }
