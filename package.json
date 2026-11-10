@@ -36,9 +36,9 @@
   },
   "homepage": "https://github.com/inukshuk/sqleton#readme",
   "engines": {
-    "node": ">=25"
+    "node": ">=24"
   },
   "devDependencies": {
-    "neostandard": "^0.13.0"
+    "neostandard": "^0.14.1"
   }
 }
